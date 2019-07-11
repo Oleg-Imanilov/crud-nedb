@@ -3,7 +3,6 @@
 Easy way to create express app with CRUD API &amp; swagger
 
 
-
 1. Create model:
 ```javascript
     const field = require('./Field');
@@ -21,3 +20,8 @@ Easy way to create express app with CRUD API &amp; swagger
 ```javascript
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 ```
+
+This module uses
+* swagger-ui-express - to show API docs
+* [https://www.npmjs.com/package/nedb|nedb] - for data layer 
+* express - to create express router
