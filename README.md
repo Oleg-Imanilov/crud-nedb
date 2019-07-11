@@ -22,6 +22,6 @@ Easy way to create express app with CRUD API &amp; swagger
 ```
 
 This module uses
-* swagger-ui-express - to show API docs
-* [https://www.npmjs.com/package/nedb|nedb] - for data layer 
-* express - to create express router
+* [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express) - to show API docs
+* [nedb](https://www.npmjs.com/package/nedb) - for data layer 
+* [express](https://www.npmjs.com/package/express) - to create express router
