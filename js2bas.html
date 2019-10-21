@@ -32,15 +32,20 @@
 		
 		outLines.forEach((l) => {
 			if(l[1].func) {
-				const {addr, params} = funcs[l[1].func];
-				let s = '';
-				params.forEach((p,j) => {
-				    if(l[1].params[j]!=='_'){
-						s += `${p} = ${l[1].params[j]}:`
-					}
-				});
-				s += `GOSUB ${addr}: REM ${l[1].func}`;
-				l[1] = s;				
+				if(!funcs[l[1].func]) {
+					l[1] = `ERROR! NO FUNCTION "${l[1].func}"`
+				} else {
+					const {addr, params} = funcs[l[1].func];
+					let s = '';
+					params.forEach((p,j) => {
+						let pp = l[1].params[j];
+						if(pp !== undefined && pp !== '_') {
+							s += `${p} = ${pp}:`
+						}
+					});
+					s += `GOSUB ${addr}: REM ${l[1].func}`;
+					l[1] = s;
+				}
 			}
 			constKeys.forEach((k) => {
 				 const r = new RegExp(k,'g');
@@ -70,9 +75,9 @@
 	}
 </script>
 </head>
-<table width='900' border='1'>
+<table style="width:900px;height:700px">
 <tr>
-<td><textarea style='width:400px;height:400px' id='inp'>#blue 5
+<td valign="top"><textarea oninput='onInpChange()' style='width:450px;height:450px;overflow' id='inp'>#blue 5
 #red 3
 print "hello"
 print "world";#BLUE
@@ -80,10 +85,10 @@ print "world";#BLUE
 
   ~posCursor   x   y
      return</textarea></td>
-<td valign="top"><pre style="color:white;background:black;" id='out' onclick="selectText('out')"></pre></td>
+<td valign="top"><pre  style="color:white;background:black;"  id='out' onclick="selectText('out')"></pre></td>
 </tr>
 </table>
-<button onclick='onInpChange()'>Submit</button>
+<br/><button onclick='onInpChange()'>Submit</button>
 <br/><br/>
 <h3>Help</h3>
 <div id='help'>
